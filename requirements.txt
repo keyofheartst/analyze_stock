@@ -1,0 +1,6 @@
+pip install yfinance
+pip install matplotlib
+pip install pandas
+pip install numpy
+# candle stick
+pip install mplfinance
