@@ -37,7 +37,11 @@ def fetch_data(symbol, api_key):
     
     return results
 
-symbol = "AAPL"
-api_key = "your_alpha_vantage_api_key"
-data = fetch_data(symbol, api_key)
-print(data)
+def main():
+    symbol = "AAPL"
+    api_key = "your_alpha_vantage_api_key"
+    data = fetch_data(symbol, api_key)
+    print(data)
+
+if __name__ == "__main__":
+    main()
