@@ -11,7 +11,6 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from datetime import timedelta as td
 
-# Thông tin cổ phiếu
 TICKER = "AAPL"
 FUTURE_DAYS = 90
 API_KEY = "your_alpha_vantage_api_key"
@@ -34,7 +33,6 @@ def fetch_data(**kwargs):
 
     return {"alpha_vantage": alpha_data, "yfinance": yf_data.to_dict()}
 
-# Chuẩn bị dữ liệu
 def prepare_data(**kwargs):
     ti = kwargs['ti']
     data = pd.DataFrame.from_dict(ti.xcom_pull(task_ids='fetch_data')['yfinance'])
@@ -42,7 +40,6 @@ def prepare_data(**kwargs):
     data.dropna(inplace=True)
     ti.xcom_push(key='prepared_data', value=data.to_dict())
 
-# Huấn luyện mô hình và dự đoán
 def train_and_predict(**kwargs):
     ti = kwargs['ti']
     data = pd.DataFrame.from_dict(ti.xcom_pull(task_ids='prepare_data', key='prepared_data'))
@@ -64,7 +61,6 @@ def train_and_predict(**kwargs):
     pred_df = pd.DataFrame({"Date": future_dates, "Predicted_Close": predictions})
     ti.xcom_push(key='predictions', value=pred_df.to_dict())
 
-# Hiển thị kết quả
 def plot_results(**kwargs):
     ti = kwargs['ti']
     data = pd.DataFrame.from_dict(ti.xcom_pull(task_ids='prepare_data', key='prepared_data'))

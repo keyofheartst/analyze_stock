@@ -87,7 +87,6 @@ def plot_results(data, predictions):
     plt.grid()
     plt.show()
 
-# Chạy chương trình
 if __name__ == "__main__": 
     data = get_data(TICKER)
     data = prepare_data(data, FUTURE_DAYS)
